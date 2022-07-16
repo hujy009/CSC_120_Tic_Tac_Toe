@@ -24,13 +24,19 @@ def mark_board(player, row, col):
         board[row][col] = 'X'
     if player == 2:
         board[row][col] = 'O'
+
+    for e in board:
+        if '-' in e:
+            return -1
+    
+    return player
     
 
   
 if __name__ == "__main__":
     num = 0      
 player = 1
-while num < 9:
+while True:
     if num % 2 == 0:
         player = 1
     else:
@@ -45,6 +51,12 @@ while num < 9:
         print("---Invalid input choice. Please mark again!---")
         continue
     
-    mark_board(player, row, col)
+    whoWin = mark_board(player, row, col)
+    if whoWin == 1:
+        print(" Player 1 wins! Game Over!")
+        break
+    elif whoWin == 2:
+        print(" Player 2 wins! Game Over!")
+        break
 
     num = num + 1
